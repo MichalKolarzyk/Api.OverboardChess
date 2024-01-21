@@ -21,6 +21,10 @@ namespace Http.OverboardChess.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogInformation("Azure information");
+            _logger.LogWarning("Azure warning");
+            _logger.LogError("Azure error");
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
