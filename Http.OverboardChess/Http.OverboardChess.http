@@ -1,0 +1,6 @@
+@Http.OverboardChess_HostAddress = http://localhost:5037
+
+GET {{Http.OverboardChess_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

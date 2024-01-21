@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.OverboardChess", "Http.OverboardChess\Http.OverboardChess.csproj", "{26E13533-4EF2-4B24-A42F-E93F4BEF225B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26E13533-4EF2-4B24-A42F-E93F4BEF225B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26E13533-4EF2-4B24-A42F-E93F4BEF225B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26E13533-4EF2-4B24-A42F-E93F4BEF225B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26E13533-4EF2-4B24-A42F-E93F4BEF225B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {020E476F-5C49-48D7-BBAE-D2677B44916F}
+	EndGlobalSection
+EndGlobal
