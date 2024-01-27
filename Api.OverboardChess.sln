@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.OverboardChess", "Http.OverboardChess\Http.OverboardChess.csproj", "{26E13533-4EF2-4B24-A42F-E93F4BEF225B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Http.OverboardChess", "Http.OverboardChess\Http.OverboardChess.csproj", "{26E13533-4EF2-4B24-A42F-E93F4BEF225B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplication.OverboardChess", "Aplication.OverboardChess\Aplication.OverboardChess.csproj", "{5ACEBE6B-44F6-49FA-9742-99593F48A1A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.OverboardChess", "Domain.OverboardChess\Domain.OverboardChess.csproj", "{9E23D49D-9F60-4D17-BEC3-A279F5222418}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.OverboardChess", "Infrastructure.OverboardChess\Infrastructure.OverboardChess.csproj", "{FA63C585-FE2B-4D4E-9FA8-694DD670084E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{26E13533-4EF2-4B24-A42F-E93F4BEF225B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26E13533-4EF2-4B24-A42F-E93F4BEF225B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26E13533-4EF2-4B24-A42F-E93F4BEF225B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ACEBE6B-44F6-49FA-9742-99593F48A1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ACEBE6B-44F6-49FA-9742-99593F48A1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ACEBE6B-44F6-49FA-9742-99593F48A1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ACEBE6B-44F6-49FA-9742-99593F48A1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E23D49D-9F60-4D17-BEC3-A279F5222418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E23D49D-9F60-4D17-BEC3-A279F5222418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E23D49D-9F60-4D17-BEC3-A279F5222418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E23D49D-9F60-4D17-BEC3-A279F5222418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA63C585-FE2B-4D4E-9FA8-694DD670084E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA63C585-FE2B-4D4E-9FA8-694DD670084E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA63C585-FE2B-4D4E-9FA8-694DD670084E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA63C585-FE2B-4D4E-9FA8-694DD670084E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
