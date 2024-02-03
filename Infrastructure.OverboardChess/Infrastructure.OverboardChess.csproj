@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Aplication.OverboardChess\Application.OverboardChess.csproj" />
+    <ProjectReference Include="..\Aplication.OverboardChess\Aplication.OverboardChess.csproj" />
   </ItemGroup>
 
 </Project>

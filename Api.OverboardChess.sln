@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Http.OverboardChess", "Http.OverboardChess\Http.OverboardChess.csproj", "{26E13533-4EF2-4B24-A42F-E93F4BEF225B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.OverboardChess", "Aplication.OverboardChess\Application.OverboardChess.csproj", "{5ACEBE6B-44F6-49FA-9742-99593F48A1A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplication.OverboardChess", "Aplication.OverboardChess\Aplication.OverboardChess.csproj", "{5ACEBE6B-44F6-49FA-9742-99593F48A1A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.OverboardChess", "Domain.OverboardChess\Domain.OverboardChess.csproj", "{9E23D49D-9F60-4D17-BEC3-A279F5222418}"
 EndProject
