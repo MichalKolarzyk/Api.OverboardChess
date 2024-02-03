@@ -1,3 +1,4 @@
+using Aplication.OverboardChess;
 using Application.OverboardChess.Repositories;
 using Infrastructure.OverboardChess.Database;
 
@@ -19,6 +20,8 @@ builder.Services.Configure<MongoDbSettings>(config =>
         ?? "";
     config.DatabaseName = builder.Configuration.GetSection("MongoDbSettings")["DatabaseName"] ?? "";
 });
+
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblies(ApplicationAssembly.Assembly));
 
 var app = builder.Build();
 

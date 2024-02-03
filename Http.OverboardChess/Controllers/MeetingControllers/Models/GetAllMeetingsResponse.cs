@@ -1,4 +1,4 @@
-﻿using Aplication.OverboardChess.Meetings;
+﻿using Domain.OverboardChess.Meetings;
 
 namespace Http.OverboardChess.Controllers.MeetingControllers.Models
 {
