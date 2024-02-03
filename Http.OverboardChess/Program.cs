@@ -12,7 +12,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<MongoDatabase>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(MongoRepository<>));
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.Configure<MongoDbSettings>(config =>
+{
+    config.ConnectionString = Environment.GetEnvironmentVariable("MONGO_SETTINGS_CONNECTION_STRING") 
+        ?? builder.Configuration.GetSection("MongoDbSettings")["ConnectionString"] 
+        ?? "";
+    config.DatabaseName = builder.Configuration.GetSection("MongoDbSettings")["DatabaseName"] ?? "";
+});
 
 var app = builder.Build();
 
