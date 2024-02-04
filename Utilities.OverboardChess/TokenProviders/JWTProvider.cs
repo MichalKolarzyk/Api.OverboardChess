@@ -11,15 +11,15 @@ namespace Utilities.OverboardChess.TokenProviders
 {
     public class JWTProvider
     {
-        public static string Create(Key key, List<Claim> claims, DateTime expires)
+        public static string Create(Key key, List<Claim> claims, DateTime expires, string? audience = null, string? issuer = null)
         {
             var signingCredentials = new SigningCredentials(key.Value, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 claims: claims,
                 signingCredentials: signingCredentials,
-                audience: "sklepOnline.pl",
-                issuer: "backendSlepOnline.pl",
+                audience: audience,
+                issuer: issuer,
                 expires: expires);
 
             var tokenHandler = new JwtSecurityTokenHandler();

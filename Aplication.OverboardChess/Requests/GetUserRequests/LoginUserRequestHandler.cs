@@ -4,6 +4,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.OverboardChess.Cryptography;
@@ -33,7 +34,13 @@ namespace Aplication.OverboardChess.Requests.GetUserRequests
                 throw new Exception("Wrong username or password.");
 
             var key = Key.GetSymetricSecurityKey("oaisdjasoidaslkdmnaskjdbaskdbasukdjasdsa");
-            return JWTProvider.Create(key, [], DateTime.Now.AddDays(1));
+
+            var claims = new List<Claim>
+            {
+                new ("Id", user.Id.ToString()),
+            };
+
+            return JWTProvider.Create(key, claims, DateTime.Now.AddDays(1));
         }
     }
 }

@@ -22,11 +22,11 @@ namespace Utilities.OverboardChess.TokenProviders
 
         public static ValidationParameters Get(Key key) => new(new TokenValidationParameters()
         {
-            ValidateIssuerSigningKey = true,
+            ValidateIssuerSigningKey = false,
             IssuerSigningKey = key.Value,
-            ValidateLifetime = true,
-            ValidateAudience = true,
-            ValidateIssuer = true,
+            ValidateLifetime = false,
+            ValidateAudience = false,
+            ValidateIssuer = false,
         });
 
 
