@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.OverboardChess", "Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.OverboardChess", "Infrastructure.OverboardChess\Infrastructure.OverboardChess.csproj", "{FA63C585-FE2B-4D4E-9FA8-694DD670084E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.OverboardChess", "Utilities.OverboardChess\Utilities.OverboardChess.csproj", "{62984D57-8A4F-4104-B628-091FCB542D30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FA63C585-FE2B-4D4E-9FA8-694DD670084E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA63C585-FE2B-4D4E-9FA8-694DD670084E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA63C585-FE2B-4D4E-9FA8-694DD670084E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62984D57-8A4F-4104-B628-091FCB542D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62984D57-8A4F-4104-B628-091FCB542D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62984D57-8A4F-4104-B628-091FCB542D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62984D57-8A4F-4104-B628-091FCB542D30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

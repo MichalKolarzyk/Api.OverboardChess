@@ -15,9 +15,9 @@ namespace Http.OverboardChess.Controllers.MeetingControllers
         private readonly IMediator _mediator = mediator;
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateMeetingBody createMeetingBody)
+        public async Task<IActionResult> Create([FromBody] CreateMeetingBody body)
         {
-            var request = new CreateMeetingRequest(createMeetingBody.Title);
+            var request = new CreateMeetingRequest(body.Title, body.Start, body.DurationHours, body.DurationMinutes);
             await _mediator.Send(request);
             return Ok();
         }

@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Application.OverboardChess.Requests.CreateMeetingRequests
 {
-    public class CreateMeetingRequest(string title) : IRequest
+    public class CreateMeetingRequest(string title, DateTime start, int durationHours, int durationMinutes) : IRequest
     {
         public string Title { get; } = title;
+        public DateTime Start { get; set; } = start;
+        public int DurationHours { get; set; } = durationHours;
+        public int DurationMinutes { get; set; } = durationMinutes;
     }
 }

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain.OverboardChess\Domain.OverboardChess.csproj" />
+    <ProjectReference Include="..\Utilities.OverboardChess\Utilities.OverboardChess.csproj" />
   </ItemGroup>
 
 </Project>
