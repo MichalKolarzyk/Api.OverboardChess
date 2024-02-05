@@ -9,8 +9,6 @@ using Utilities.OverboardChess.TokenProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -63,13 +61,12 @@ builder.Services.AddAuthentication(options =>
     options.DefaultAuthenticateScheme = "Bearer";
     options.DefaultChallengeScheme = "Bearer";
     options.DefaultScheme = "Bearer";
-})
-    .AddJwtBearer(options =>
-    {
-        options.RequireHttpsMetadata = false;
-        options.SaveToken = true;
-        options.TokenValidationParameters = ValidationParameters.Get(Key.GetSymetricSecurityKey("oaisdjasoidaslkdmnaskjdbaskdbasukdjasdsa")).Value;
-    });
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = ValidationParameters.Get(Key.GetSymetricSecurityKey("oaisdjasoidaslkdmnaskjdbaskdbasukdjasdsa")).Value;
+});
 
 //builder.Services.AddAuthorization();
 var app = builder.Build();

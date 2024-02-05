@@ -24,10 +24,7 @@ namespace Aplication.OverboardChess.Requests.CreateInvitationRequests
             if (invitationExists)
                 throw new Exception("User is already invited to this meeting.");
 
-            if (_currentIdentity.UserId == null)
-                throw new Exception();
-
-            var invitation = new Invitation(request.MeetingId, _currentIdentity.UserId.Value, request.UserId);
+            var invitation = new Invitation(request.MeetingId, _currentIdentity.GetUserId(), request.UserId);
 
             await _invitationRepository.InsertAsync(invitation);
         }

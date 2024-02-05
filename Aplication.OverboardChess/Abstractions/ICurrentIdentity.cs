@@ -10,4 +10,15 @@ namespace Aplication.OverboardChess.Abstractions
     {
         public Guid? UserId { get; }
     }
+
+    public static class CurrentIdentityExtensions
+    {
+        public static Guid GetUserId(this ICurrentIdentity currentIdentity)
+        {
+            if (currentIdentity.UserId == null)
+                throw new Exception("User is not provided for the current request.");
+
+            return currentIdentity.UserId.Value;
+        }
+    }
 }

@@ -13,7 +13,7 @@ namespace Aplication.OverboardChess.Requests.UpdateInvitationRequests
 
         public async Task Handle(AcceptInvitationRequest request, CancellationToken cancellationToken)
         {
-            var requestedBy = await _userRepository.GetAsync(_currentIdentity.UserId.Value);
+            var requestedBy = await _userRepository.GetAsync(_currentIdentity.GetUserId());
             var invitation = await _invitationRepository.GetAsync(request.InvitationId);
 
             invitation.Accept(requestedBy);

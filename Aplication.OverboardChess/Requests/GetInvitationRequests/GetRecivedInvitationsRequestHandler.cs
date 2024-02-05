@@ -10,7 +10,7 @@ namespace Aplication.OverboardChess.Requests.GetInvitationRequests
 
         public async Task<GetRecivedInvitationsResponse> Handle(GetRecivedInvitationsRequest request, CancellationToken cancellationToken)
         {
-            var invitedUser = _currentIdentity.UserId.Value;
+            var invitedUser = _currentIdentity.GetUserId();
 
             var invitations = await _invitationRepository.GetListAsync(i => i.InvitedUserId == invitedUser && i.State == InvitationState.Created);
 

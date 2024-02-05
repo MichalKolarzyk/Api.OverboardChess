@@ -18,10 +18,7 @@ namespace Application.OverboardChess.Requests.CreateMeetingRequests
 
         public async Task Handle(CreateMeetingRequest request, CancellationToken cancellationToken)
         {
-            if (_currentIdentity.UserId == null)
-                throw new Exception("");
-
-            var user = await _userRepository.GetAsync(_currentIdentity.UserId.Value);
+            var user = await _userRepository.GetAsync(_currentIdentity.GetUserId());
             var duration = new Duration(request.DurationHours, request.DurationMinutes);
             var meeting = Meeting.Create(user, request.Start, duration, request.Title);
 
