@@ -13,13 +13,21 @@ namespace Domain.OverboardChess.Meetings
 
         public Meeting() { }
 
-        public Meeting(User owner, DateTime start, Duration duration, string title)
+        private Meeting(User owner, DateTime start, Duration duration, string title)
         {
             Title = title;
             OwnerId = owner.Id;
             Start = start;
             End = duration.ToDateTime(start);
             State = MeetingState.Ready;
+        }
+
+        public static Meeting Create(User owner, DateTime start, Duration duration, string title)
+        {
+            if (duration.InMinutes() == 0)
+                throw new Exception("Meeting have to have duration greater then 0 minutes");
+
+            return new Meeting(owner, start, duration, title);
         }
     }
 

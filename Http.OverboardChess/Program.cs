@@ -81,7 +81,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseExceptionHandler("/exception");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

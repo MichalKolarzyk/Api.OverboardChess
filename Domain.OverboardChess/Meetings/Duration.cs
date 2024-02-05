@@ -28,5 +28,10 @@ namespace Domain.OverboardChess.Meetings
             return from.AddHours(Hours)
                 .AddMinutes(Minutes);
         }
+
+        public int InMinutes()
+        {
+            return Hours * 60 + Minutes;
+        }
     }
 }

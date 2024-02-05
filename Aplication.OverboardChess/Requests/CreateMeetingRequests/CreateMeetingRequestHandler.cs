@@ -23,7 +23,7 @@ namespace Application.OverboardChess.Requests.CreateMeetingRequests
 
             var user = await _userRepository.GetAsync(_currentIdentity.UserId.Value);
             var duration = new Duration(request.DurationHours, request.DurationMinutes);
-            var meeting = new Meeting(user, request.Start, duration, request.Title);
+            var meeting = Meeting.Create(user, request.Start, duration, request.Title);
 
             await _meetingRepository.InsertAsync(meeting);
         }
