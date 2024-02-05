@@ -1,4 +1,4 @@
-﻿using Application.OverboardChess.Repositories;
+﻿using Aplication.OverboardChess.Abstractions;
 using Domain.OverboardChess.Base;
 using MongoDB.Driver;
 using System.Linq.Expressions;

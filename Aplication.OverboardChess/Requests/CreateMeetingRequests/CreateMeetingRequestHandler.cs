@@ -1,4 +1,4 @@
-﻿using Application.OverboardChess.Repositories;
+﻿using Aplication.OverboardChess.Abstractions;
 using Domain.OverboardChess.Meetings;
 using Domain.OverboardChess.Users;
 using MediatR;
@@ -10,16 +10,20 @@ using System.Threading.Tasks;
 
 namespace Application.OverboardChess.Requests.CreateMeetingRequests
 {
-    public class CreateMeetingRequestHandler(IRepository<Meeting> meetingRepository, IRepository<User> userRepository) : IRequestHandler<CreateMeetingRequest>
+    public class CreateMeetingRequestHandler(IRepository<Meeting> meetingRepository, IRepository<User> userRepository, ICurrentIdentity currentIdentity) : IRequestHandler<CreateMeetingRequest>
     {
         private readonly IRepository<Meeting> _meetingRepository = meetingRepository;
         private readonly IRepository<User> _userRepository = userRepository;
+        private readonly ICurrentIdentity _currentIdentity = currentIdentity;
 
         public async Task Handle(CreateMeetingRequest request, CancellationToken cancellationToken)
         {
-            var duration = new Duration(request.DurationHours, request.DurationMinutes);
+            if (_currentIdentity.UserId == null)
+                throw new Exception("");
 
-            var meeting = new Meeting(new User("", ""), request.Start, duration, request.Title);
+            var user = await _userRepository.GetAsync(_currentIdentity.UserId.Value);
+            var duration = new Duration(request.DurationHours, request.DurationMinutes);
+            var meeting = new Meeting(user, request.Start, duration, request.Title);
 
             await _meetingRepository.InsertAsync(meeting);
         }

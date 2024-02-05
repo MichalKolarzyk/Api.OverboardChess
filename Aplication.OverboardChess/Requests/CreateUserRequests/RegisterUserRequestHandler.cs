@@ -1,4 +1,4 @@
-﻿using Application.OverboardChess.Repositories;
+﻿using Aplication.OverboardChess.Abstractions;
 using Domain.OverboardChess.Users;
 using MediatR;
 using Utilities.OverboardChess.Cryptography;

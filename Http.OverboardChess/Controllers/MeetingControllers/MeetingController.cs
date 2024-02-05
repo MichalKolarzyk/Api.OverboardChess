@@ -1,4 +1,4 @@
-﻿using Application.OverboardChess.Repositories;
+﻿using Aplication.OverboardChess.Abstractions;
 using Application.OverboardChess.Requests.CreateMeetingRequests;
 using Domain.OverboardChess.Meetings;
 using Http.OverboardChess.Controllers.MeetingControllers.Models;

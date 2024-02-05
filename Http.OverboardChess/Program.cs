@@ -1,5 +1,6 @@
 using Aplication.OverboardChess;
-using Application.OverboardChess.Repositories;
+using Aplication.OverboardChess.Abstractions;
+using Http.OverboardChess.Providers;
 using Infrastructure.OverboardChess.Database;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
@@ -44,7 +45,7 @@ builder.Services.AddSwaggerGen(configue =>
           }
         });
 });
-
+builder.Services.AddScoped<ICurrentIdentity, CurrentIdentityHttp>();
 builder.Services.AddSingleton<MongoDatabase>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(MongoRepository<>));
 builder.Services.AddHttpContextAccessor();
