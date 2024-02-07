@@ -1,11 +1,11 @@
-﻿using Aplication.OverboardChess.Abstractions;
+﻿using Aplication.OverboardChess.Abstractions.Repositories;
 using Domain.OverboardChess.Base;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 
-namespace Infrastructure.OverboardChess.Database
+namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
 {
-    public class MongoRepository<T> : IRepository<T> 
+    public class MongoRepository<T> : IRepository<T>
         where T : AggregateRoot
     {
         protected readonly IMongoCollection<T> _mongoCollection;
@@ -55,7 +55,7 @@ namespace Infrastructure.OverboardChess.Database
 
         public async Task<bool> Any(Expression<Func<T, bool>> expression)
         {
-            return await _mongoCollection.Find<T>(expression).FirstOrDefaultAsync() != null;
+            return await _mongoCollection.Find(expression).FirstOrDefaultAsync() != null;
         }
 
         public async Task<bool> DeleteAsync(Expression<Func<T, bool>> expression)

@@ -1,7 +1,10 @@
-﻿using Aplication.OverboardChess.Abstractions;
+﻿using Aplication.OverboardChess.Abstractions.Repositories;
+using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
+using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories.ViewModels;
 using Application.OverboardChess.Requests.CreateMeetingRequests;
 using Domain.OverboardChess.Meetings;
 using Http.OverboardChess.Controllers.MeetingControllers.Models;
+using Infrastructure.OverboardChess.Database;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +14,10 @@ namespace Http.OverboardChess.Controllers.MeetingControllers
     [ApiController]
     [Authorize]
     [Route("[controller]")]
-    public class MeetingController(IRepository<Meeting> meetingRepository, IMediator mediator, IHttpContextAccessor httpContextAccessor) : ControllerBase
+    public class MeetingController(IMeetingRepository meetingRepository, IMediator mediator, IHttpContextAccessor httpContextAccessor) : ControllerBase
     {
-        private readonly IRepository<Meeting> _meetingRepository = meetingRepository;
+        private readonly IMeetingRepository _meetingRepository = meetingRepository;
         private readonly IMediator _mediator = mediator;
-        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateMeetingBody body)
@@ -27,11 +29,9 @@ namespace Http.OverboardChess.Controllers.MeetingControllers
         }
 
         [HttpGet]
-        public async Task<List<Meeting>> GetAllMeetings()
+        public async Task<List<MeetingWithUserViewModel>> GetAllMeetings()
         {
-            var meetings = await _meetingRepository.GetListAsync((m) => true);
-
-            return meetings;
+            return await _meetingRepository.GetMeetingWithUserViewModels(m => true);
         }
     }
 }

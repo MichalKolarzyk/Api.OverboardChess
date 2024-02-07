@@ -1,4 +1,5 @@
 ﻿using Aplication.OverboardChess.Abstractions;
+using Aplication.OverboardChess.Abstractions.Repositories;
 using Domain.OverboardChess.Invitations;
 using MediatR;
 namespace Aplication.OverboardChess.Requests.GetInvitationRequests

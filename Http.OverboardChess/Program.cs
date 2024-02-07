@@ -1,7 +1,10 @@
 using Aplication.OverboardChess;
 using Aplication.OverboardChess.Abstractions;
+using Aplication.OverboardChess.Abstractions.Repositories;
+using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
 using Http.OverboardChess.Providers;
 using Infrastructure.OverboardChess.Database;
+using Infrastructure.OverboardChess.Database.MongoDbRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using System.Configuration;
@@ -46,6 +49,7 @@ builder.Services.AddSwaggerGen(configue =>
 builder.Services.AddScoped<ICurrentIdentity, CurrentIdentityHttp>();
 builder.Services.AddSingleton<MongoDatabase>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(MongoRepository<>));
+builder.Services.AddScoped<IMeetingRepository, MeetingMongoRepository>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<MongoDbSettings>(config =>
 {

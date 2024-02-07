@@ -1,7 +1,7 @@
 ﻿using Domain.OverboardChess.Base;
 using System.Linq.Expressions;
 
-namespace Aplication.OverboardChess.Abstractions
+namespace Aplication.OverboardChess.Abstractions.Repositories
 {
     public interface IRepository<T> where T : AggregateRoot
     {
