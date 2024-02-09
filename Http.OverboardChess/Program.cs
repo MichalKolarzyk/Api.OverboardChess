@@ -80,13 +80,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors(configue =>
-    {
-        configue.AllowAnyOrigin();
-        configue.AllowAnyMethod();
-        configue.AllowAnyHeader();
-        configue.AllowCredentials();
-    });
+    //app.UseCors(configue =>
+    //{
+    //    configue.AllowAnyOrigin();
+    //    configue.AllowAnyMethod();
+    //    configue.AllowAnyHeader();
+    //    configue.AllowCredentials();
+    //});
 }
 
 app.UseExceptionHandler("/exception");
