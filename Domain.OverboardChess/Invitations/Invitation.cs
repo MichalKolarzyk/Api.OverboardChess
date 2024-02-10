@@ -1,10 +1,5 @@
-﻿using Domain.OverboardChess.Base;
-using Domain.OverboardChess.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.OverboardChess.Users;
+using Utilities.OverboardChess.DomainBase;
 
 namespace Domain.OverboardChess.Invitations
 {
@@ -29,6 +24,9 @@ namespace Domain.OverboardChess.Invitations
         {
             if (requestedBy.Id != InvitedUserId)
                 throw new Exception("Only invited user can accept invitation.");
+
+            if (State != InvitationState.Created)
+                throw new Exception("Invitation has been already accepted or rejected");
 
             State = InvitationState.Accepted;
         }

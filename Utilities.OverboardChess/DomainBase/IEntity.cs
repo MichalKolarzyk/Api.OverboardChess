@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.OverboardChess.Base
+namespace Utilities.OverboardChess.DomainBase
 {
     internal interface IEntity
     {

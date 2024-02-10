@@ -3,11 +3,6 @@ using Aplication.OverboardChess.Abstractions.Repositories;
 using Domain.OverboardChess.Meetings;
 using Domain.OverboardChess.Users;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.OverboardChess.Requests.CreateMeetingRequests
 {

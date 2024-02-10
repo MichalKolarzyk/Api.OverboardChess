@@ -1,4 +1,5 @@
-﻿using Aplication.OverboardChess.Requests.CreateInvitationRequests;
+﻿using Aplication.OverboardChess.Abstractions.Repositories.InvitationRepositories.ViewModels;
+using Aplication.OverboardChess.Requests.CreateInvitationRequests;
 using Aplication.OverboardChess.Requests.GetInvitationRequests;
 using Aplication.OverboardChess.Requests.UpdateInvitationRequests;
 using Http.OverboardChess.Controllers.InvitationControllers.Models;
@@ -18,7 +19,7 @@ namespace Http.OverboardChess.Controllers.InvitationControllers
         private readonly IMediator _mediator = mediator;
 
         [HttpGet("recived")]
-        public async Task<ActionResult<GetRecivedInvitationsResponse>> GetRecivedInvitations()
+        public async Task<ActionResult<List<RecivedInvitationViewModel>>> GetRecivedInvitations()
         {
             var response = await _mediator.Send(new GetRecivedInvitationsRequest());
             return Ok(response);
@@ -48,7 +49,7 @@ namespace Http.OverboardChess.Controllers.InvitationControllers
         }
 
         [HttpPut("{id}/reject")]
-        public async Task<IActionResult> RejectInvitation([FromRoute] Guid id)
+        public Task<IActionResult> RejectInvitation([FromRoute] Guid id)
         {
             throw new NotImplementedException();
         }

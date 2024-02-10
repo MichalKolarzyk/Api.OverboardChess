@@ -1,24 +1,17 @@
 ﻿using Aplication.OverboardChess.Abstractions;
 using Aplication.OverboardChess.Abstractions.Repositories;
+using Aplication.OverboardChess.Abstractions.Repositories.InvitationRepositories;
+using Aplication.OverboardChess.Abstractions.Repositories.InvitationRepositories.ViewModels;
 using Domain.OverboardChess.Invitations;
 using MediatR;
 namespace Aplication.OverboardChess.Requests.GetInvitationRequests
 {
-    public class GetRecivedInvitationsRequestHandler(ICurrentIdentity currentIdentity, IRepository<Invitation> invitationRepository) : IRequestHandler<GetRecivedInvitationsRequest, GetRecivedInvitationsResponse>
+    public class GetRecivedInvitationsRequestHandler(ICurrentIdentity currentIdentity, IInvitationRepository invitationRepository) : IRequestHandler<GetRecivedInvitationsRequest, List<RecivedInvitationViewModel>>
     {
-        private readonly ICurrentIdentity _currentIdentity = currentIdentity;
-        private readonly IRepository<Invitation> _invitationRepository = invitationRepository;
-
-        public async Task<GetRecivedInvitationsResponse> Handle(GetRecivedInvitationsRequest request, CancellationToken cancellationToken)
+        public async Task<List<RecivedInvitationViewModel>> Handle(GetRecivedInvitationsRequest request, CancellationToken cancellationToken)
         {
-            var invitedUser = _currentIdentity.GetUserId();
-
-            var invitations = await _invitationRepository.GetListAsync(i => i.InvitedUserId == invitedUser && i.State == InvitationState.Created);
-
-            return new GetRecivedInvitationsResponse
-            {
-                RecivedInvitations = invitations.Select(i => i.Id).ToList(),
-            };
+            var invitedUser = currentIdentity.GetUserId();
+            return await invitationRepository.GetRecivedInvitiationsViewModel(invitedUser);
         }
     }
 }

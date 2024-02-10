@@ -1,13 +1,7 @@
 ﻿using Aplication.OverboardChess.Abstractions;
 using Aplication.OverboardChess.Abstractions.Repositories;
 using Domain.OverboardChess.Invitations;
-using Domain.OverboardChess.Users;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aplication.OverboardChess.Requests.CreateInvitationRequests
 {

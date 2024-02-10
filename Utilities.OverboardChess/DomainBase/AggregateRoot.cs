@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.OverboardChess.Base
+namespace Utilities.OverboardChess.DomainBase
 {
     public class AggregateRoot : IEntity
     {
         public Guid Id { get; set; }
 
-        private readonly List<IDomainEvent> _events = new List<IDomainEvent>();
+        private readonly List<IDomainEvent> _events = [];
         public void AddDomainEvent(IDomainEvent domainEvent)
         {
             _events.Add(domainEvent);

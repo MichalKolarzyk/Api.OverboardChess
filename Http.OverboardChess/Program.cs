@@ -1,6 +1,7 @@
 using Aplication.OverboardChess;
 using Aplication.OverboardChess.Abstractions;
 using Aplication.OverboardChess.Abstractions.Repositories;
+using Aplication.OverboardChess.Abstractions.Repositories.InvitationRepositories;
 using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
 using Http.OverboardChess.Providers;
 using Infrastructure.OverboardChess.Database;
@@ -50,6 +51,7 @@ builder.Services.AddScoped<ICurrentIdentity, CurrentIdentityHttp>();
 builder.Services.AddSingleton<MongoDatabase>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(MongoRepository<>));
 builder.Services.AddScoped<IMeetingRepository, MeetingMongoRepository>();
+builder.Services.AddScoped<IInvitationRepository, InvitationMongoRepository>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<MongoDbSettings>(config =>
 {

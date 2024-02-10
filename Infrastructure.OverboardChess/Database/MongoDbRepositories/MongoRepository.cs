@@ -1,7 +1,7 @@
 ﻿using Aplication.OverboardChess.Abstractions.Repositories;
-using Domain.OverboardChess.Base;
 using MongoDB.Driver;
 using System.Linq.Expressions;
+using Utilities.OverboardChess.DomainBase;
 
 namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
 {

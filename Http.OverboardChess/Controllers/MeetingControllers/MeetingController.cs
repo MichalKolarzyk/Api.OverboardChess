@@ -1,10 +1,10 @@
-﻿using Aplication.OverboardChess.Abstractions.Repositories;
+﻿using Aplication.OverboardChess.Abstractions;
+using Aplication.OverboardChess.Abstractions.Repositories;
 using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
 using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories.ViewModels;
+using Aplication.OverboardChess.Requests.UpdateMeetingRequests;
 using Application.OverboardChess.Requests.CreateMeetingRequests;
-using Domain.OverboardChess.Meetings;
 using Http.OverboardChess.Controllers.MeetingControllers.Models;
-using Infrastructure.OverboardChess.Database;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,25 +13,41 @@ namespace Http.OverboardChess.Controllers.MeetingControllers
 {
     [ApiController]
     [Authorize]
-    [Route("[controller]")]
-    public class MeetingController(IMeetingRepository meetingRepository, IMediator mediator, IHttpContextAccessor httpContextAccessor) : ControllerBase
+    [Route("api/[controller]")]
+    public class MeetingController(IMeetingRepository meetingRepository, ICurrentIdentity currentIdentity, IMediator mediator) : ControllerBase
     {
-        private readonly IMeetingRepository _meetingRepository = meetingRepository;
-        private readonly IMediator _mediator = mediator;
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateMeetingBody body)
         {
 
             var request = new CreateMeetingRequest(body.Title, body.Start, body.DurationHours, body.DurationMinutes);
-            await _mediator.Send(request);
+            await mediator.Send(request);
             return Ok();
         }
 
-        [HttpGet]
-        public async Task<List<MeetingWithUserViewModel>> GetAllMeetings()
+        [HttpGet("MeetingsWhereUserParticipate")]
+        public async Task<List<MeetingWithUserViewModel>> GetMeetingsWhereUserParticipate()
         {
-            return await _meetingRepository.GetMeetingWithUserViewModels(m => true);
+            return await meetingRepository.GetMeetingsWhereUserParticipate(currentIdentity.GetUserId());
+        }
+
+        [HttpGet("UserOwnerMeetings")]
+        public async Task<List<MeetingWithUserViewModel>> GetUserOwnerMeetings()
+        {
+            return await meetingRepository.GetUserOwnerMeetings(currentIdentity.GetUserId());
+        }
+
+        [HttpGet("FindMeetings")]
+        public async Task<List<MeetingWithUserViewModel>> FindMeetings()
+        {
+            return await meetingRepository.FindMeetings(currentIdentity.GetUserId());
+        }
+
+        [HttpPost("{meetingId}/join")]
+        public async Task<ActionResult> Join([FromRoute] Guid meetingId)
+        {
+            await mediator.Send(new JoinMeetingRequest(meetingId));
+            return Ok();
         }
     }
 }

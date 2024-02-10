@@ -1,4 +1,4 @@
-﻿using Domain.OverboardChess.Base;
+﻿using Utilities.OverboardChess.DomainBase;
 
 namespace Domain.OverboardChess.Users
 {

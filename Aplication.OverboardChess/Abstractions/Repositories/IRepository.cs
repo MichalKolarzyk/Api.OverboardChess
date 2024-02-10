@@ -1,5 +1,5 @@
-﻿using Domain.OverboardChess.Base;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
+using Utilities.OverboardChess.DomainBase;
 
 namespace Aplication.OverboardChess.Abstractions.Repositories
 {
