@@ -58,7 +58,7 @@ namespace Domain.OverboardChess.Meetings
             Participants.Add(userId);
         }
 
-        private bool IsParticipant(Guid userId)
+        public bool IsParticipant(Guid userId)
         {
             return Participants.Contains(userId) || OwnerId == userId;
         }

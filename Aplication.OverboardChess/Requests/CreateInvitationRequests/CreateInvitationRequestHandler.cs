@@ -1,27 +1,30 @@
 ﻿using Aplication.OverboardChess.Abstractions;
 using Aplication.OverboardChess.Abstractions.Repositories;
+using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
 using Domain.OverboardChess.Invitations;
 using MediatR;
 
 namespace Aplication.OverboardChess.Requests.CreateInvitationRequests
 {
-    public class CreateInvitationRequestHandler(IRepository<Invitation> invitationRepository, ICurrentIdentity currentIdentity) : IRequestHandler<CreateInvitationRequest>
+    public class CreateInvitationRequestHandler(IRepository<Invitation> invitationRepository, IMeetingRepository meetingRepository, ICurrentIdentity currentIdentity) : IRequestHandler<CreateInvitationRequest>
     {
-        private readonly IRepository<Invitation> _invitationRepository = invitationRepository;
-        private readonly ICurrentIdentity _currentIdentity = currentIdentity;
-
         public async Task Handle(CreateInvitationRequest request, CancellationToken cancellationToken)
         {
-            var invitationExists = await _invitationRepository.Any(i => i.InvitedUserId == request.UserId 
+            var meeting = await meetingRepository.GetAsync(request.MeetingId);
+
+            if (meeting.IsParticipant(currentIdentity.GetUserId()))
+                throw new Exception("User is already meeting participant");
+
+            var invitationExists = await invitationRepository.Any(i => i.InvitedUserId == request.UserId 
                 && i.MeetingId == request.MeetingId 
                 && i.State == InvitationState.Created);
 
             if (invitationExists)
                 throw new Exception("User is already invited to this meeting.");
 
-            var invitation = new Invitation(request.MeetingId, _currentIdentity.GetUserId(), request.UserId);
+            var invitation = new Invitation(request.MeetingId, currentIdentity.GetUserId(), request.UserId);
 
-            await _invitationRepository.InsertAsync(invitation);
+            await invitationRepository.InsertAsync(invitation);
         }
     }
 }

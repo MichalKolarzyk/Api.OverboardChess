@@ -17,7 +17,7 @@ namespace Aplication.OverboardChess.Requests.UpdateInvitationRequests
         {
             var requestedBy = await userRepository.GetAsync(currentIdentity.GetUserId());
             var invitation = await invitationRepository.GetAsync(request.InvitationId);
-            invitation.Accept(requestedBy);
+            invitation.Accept(requestedBy.Id);
             await invitationRepository.UpdateAsync(invitation);
 
             var meeting = await meetingRepository.GetAsync(invitation.MeetingId);

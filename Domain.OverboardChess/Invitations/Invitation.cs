@@ -20,9 +20,9 @@ namespace Domain.OverboardChess.Invitations
             State = InvitationState.Created;
         }
 
-        public void Accept(User requestedBy)
+        public void Accept(Guid requestedById)
         {
-            if (requestedBy.Id != InvitedUserId)
+            if (requestedById != InvitedUserId)
                 throw new Exception("Only invited user can accept invitation.");
 
             if (State != InvitationState.Created)
@@ -31,9 +31,9 @@ namespace Domain.OverboardChess.Invitations
             State = InvitationState.Accepted;
         }
 
-        public void Reject(User requestedBy)
+        public void Reject(Guid requestedById)
         {
-            if (requestedBy.Id != InvitedUserId)
+            if (requestedById != InvitedUserId)
                 throw new Exception("Only invited user can reject invitation.");
 
             State = InvitationState.Rejected;

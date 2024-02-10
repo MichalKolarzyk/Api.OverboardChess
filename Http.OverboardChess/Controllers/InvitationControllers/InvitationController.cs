@@ -16,12 +16,10 @@ namespace Http.OverboardChess.Controllers.InvitationControllers
     [Authorize]
     public class InvitationController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator = mediator;
-
         [HttpGet("recived")]
         public async Task<ActionResult<List<RecivedInvitationViewModel>>> GetRecivedInvitations()
         {
-            var response = await _mediator.Send(new GetRecivedInvitationsRequest());
+            var response = await mediator.Send(new GetRecivedInvitationsRequest());
             return Ok(response);
         }
 
@@ -33,7 +31,7 @@ namespace Http.OverboardChess.Controllers.InvitationControllers
                 MeetingId = body.MeetingId,
                 UserId = body.UserId,
             };
-            await _mediator.Send(request);
+            await mediator.Send(request);
             return Ok();
         }
 
@@ -44,14 +42,19 @@ namespace Http.OverboardChess.Controllers.InvitationControllers
             {
                 InvitationId = id,
             };
-            await _mediator.Send(request);
+            await mediator.Send(request);
             return Ok();
         }
 
         [HttpPut("{id}/reject")]
-        public Task<IActionResult> RejectInvitation([FromRoute] Guid id)
+        public async Task<IActionResult> RejectInvitation([FromRoute] Guid id)
         {
-            throw new NotImplementedException();
+            var request = new RejectInvitationRequest
+            {
+                InvitationId = id,
+            };
+            await mediator.Send(request);
+            return Ok();
         }
     }
 }
