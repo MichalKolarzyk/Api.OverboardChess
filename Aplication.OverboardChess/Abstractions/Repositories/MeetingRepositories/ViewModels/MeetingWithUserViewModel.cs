@@ -11,5 +11,7 @@ namespace Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositorie
         public Guid MeetingId { get; set; }
         public Guid UserOwnerId { get; set; }
         public string UserOwnerName { get; set; } = string.Empty;
+        public string MeetingTitle { get; set; } = string.Empty;
+        public DateTime MeetingStartDate { get; set; }
     }
 }

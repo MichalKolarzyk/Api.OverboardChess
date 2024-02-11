@@ -28,6 +28,8 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                     MeetingId = u.Id,
                     UserOwnerId = u.User.Id,
                     UserOwnerName = u.User.Username,
+                    MeetingStartDate = u.Meeting.Start,
+                    MeetingTitle = u.Meeting.Title,
                 })
                 .Skip(skip)
                 .Limit(take)
@@ -49,6 +51,8 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                     MeetingId = u.Id,
                     UserOwnerId = u.User.Id,
                     UserOwnerName = u.User.Username,
+                    MeetingStartDate = u.Meeting.Start,
+                    MeetingTitle = u.Meeting.Title,
                 })
                 .Skip(skip)
                 .Limit(take)
@@ -70,6 +74,8 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                     MeetingId = u.Id,
                     UserOwnerId = u.User.Id,
                     UserOwnerName = u.User.Username,
+                    MeetingStartDate = u.Meeting.Start,
+                    MeetingTitle = u.Meeting.Title,
                 })
                 .Skip(skip)
                 .Limit(take)
@@ -80,6 +86,8 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
         {
             public required Meeting Meeting { get; set; }
             public required User User { get; set; }
+
+
         }
     }
 }
