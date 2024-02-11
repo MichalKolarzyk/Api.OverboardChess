@@ -23,13 +23,13 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                     nameof(User.Id),
                     nameof(MeetingWithUser.User))
                 .Unwind<MeetingWithUser>(nameof(MeetingWithUser.User))
-                .Project(u => new MeetingWithUserViewModel
+                .Project(m => new MeetingWithUserViewModel
                 {
-                    MeetingId = u.Id,
-                    UserOwnerId = u.User.Id,
-                    UserOwnerName = u.User.Username,
-                    MeetingStartDate = u.Meeting.Start,
-                    MeetingTitle = u.Meeting.Title,
+                    MeetingId = m.Id,
+                    UserOwnerId = m.User.Id,
+                    UserOwnerName = m.User.Username,
+                    MeetingStartDate = m.Start,
+                    MeetingTitle = m.Title,
                 })
                 .Skip(skip)
                 .Limit(take)
@@ -46,13 +46,13 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                     nameof(User.Id),
                     nameof(MeetingWithUser.User))
                 .Unwind<MeetingWithUser>(nameof(MeetingWithUser.User))
-                .Project(u => new MeetingWithUserViewModel
+                .Project(m => new MeetingWithUserViewModel
                 {
-                    MeetingId = u.Id,
-                    UserOwnerId = u.User.Id,
-                    UserOwnerName = u.User.Username,
-                    MeetingStartDate = u.Meeting.Start,
-                    MeetingTitle = u.Meeting.Title,
+                    MeetingId = m.Id,
+                    UserOwnerId = m.User.Id,
+                    UserOwnerName = m.User.Username,
+                    MeetingStartDate = m.Start,
+                    MeetingTitle = m.Title,
                 })
                 .Skip(skip)
                 .Limit(take)
@@ -69,22 +69,21 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                     nameof(User.Id),
                     nameof(MeetingWithUser.User))
                 .Unwind<MeetingWithUser>(nameof(MeetingWithUser.User))
-                .Project(u => new MeetingWithUserViewModel
+                .Project(m => new MeetingWithUserViewModel
                 {
-                    MeetingId = u.Id,
-                    UserOwnerId = u.User.Id,
-                    UserOwnerName = u.User.Username,
-                    MeetingStartDate = u.Meeting.Start,
-                    MeetingTitle = u.Meeting.Title,
+                    MeetingId = m.Id,
+                    UserOwnerId = m.User.Id,
+                    UserOwnerName = m.User.Username,
+                    MeetingStartDate = m.Start,
+                    MeetingTitle = m.Title,
                 })
                 .Skip(skip)
                 .Limit(take)
                 .ToListAsync();
         }
 
-        private class MeetingWithUser : MongoAggregateModel
+        private class MeetingWithUser : Meeting
         {
-            public required Meeting Meeting { get; set; }
             public required User User { get; set; }
 
 
