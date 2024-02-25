@@ -5,11 +5,11 @@ using Domain.OverboardChess.Meetings;
 using Domain.OverboardChess.Users;
 using MediatR;
 
-namespace Aplication.OverboardChess.Requests.UpdateInvitationRequests
+namespace Aplication.OverboardChess.Requests.InvitationRequests
 {
     public class AcceptInvitationRequestHandler(
-        IRepository<Invitation> invitationRepository, 
-        ICurrentIdentity currentIdentity, 
+        IRepository<Invitation> invitationRepository,
+        ICurrentIdentity currentIdentity,
         IRepository<Meeting> meetingRepository,
         IRepository<User> userRepository) : IRequestHandler<AcceptInvitationRequest>
     {

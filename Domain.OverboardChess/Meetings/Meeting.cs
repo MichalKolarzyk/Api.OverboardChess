@@ -47,6 +47,18 @@ namespace Domain.OverboardChess.Meetings
             Participants.Add(userId);
         }
 
+        public bool CanJoin(Guid userId)
+        {
+            return !IsParticipant(userId)
+                && Participants.Count < ParticipantsLimit
+                && !IsPrivate;
+        }
+
+        public bool IsOwner(Guid userId)
+        {
+            return OwnerId == userId;
+        }
+
         public void AddParticipant(Guid userId)
         {
             if (IsParticipant(userId))
@@ -61,6 +73,11 @@ namespace Domain.OverboardChess.Meetings
         public bool IsParticipant(Guid userId)
         {
             return Participants.Contains(userId) || OwnerId == userId;
+        }
+
+        public TimeSpan GetDuration()
+        {
+            return End - Start;
         }
     }
 

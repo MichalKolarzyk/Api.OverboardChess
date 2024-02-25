@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.OverboardChess.Requests.GetInvitationRequests
+namespace Aplication.OverboardChess.Requests.InvitationRequests
 {
     public class GetRecivedInvitationsRequest : IRequest<List<RecivedInvitationViewModel>>
     {

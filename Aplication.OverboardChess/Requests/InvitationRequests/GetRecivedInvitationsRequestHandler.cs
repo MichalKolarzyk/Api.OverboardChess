@@ -4,7 +4,7 @@ using Aplication.OverboardChess.Abstractions.Repositories.InvitationRepositories
 using Aplication.OverboardChess.Abstractions.Repositories.InvitationRepositories.ViewModels;
 using Domain.OverboardChess.Invitations;
 using MediatR;
-namespace Aplication.OverboardChess.Requests.GetInvitationRequests
+namespace Aplication.OverboardChess.Requests.InvitationRequests
 {
     public class GetRecivedInvitationsRequestHandler(ICurrentIdentity currentIdentity, IInvitationRepository invitationRepository) : IRequestHandler<GetRecivedInvitationsRequest, List<RecivedInvitationViewModel>>
     {

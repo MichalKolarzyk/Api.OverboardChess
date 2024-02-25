@@ -1,7 +1,5 @@
 ﻿using Aplication.OverboardChess.Abstractions.Repositories.InvitationRepositories.ViewModels;
-using Aplication.OverboardChess.Requests.CreateInvitationRequests;
-using Aplication.OverboardChess.Requests.GetInvitationRequests;
-using Aplication.OverboardChess.Requests.UpdateInvitationRequests;
+using Aplication.OverboardChess.Requests.InvitationRequests;
 using Http.OverboardChess.Controllers.InvitationControllers.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

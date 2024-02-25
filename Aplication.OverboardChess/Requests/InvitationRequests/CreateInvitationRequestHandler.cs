@@ -4,7 +4,7 @@ using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
 using Domain.OverboardChess.Invitations;
 using MediatR;
 
-namespace Aplication.OverboardChess.Requests.CreateInvitationRequests
+namespace Aplication.OverboardChess.Requests.InvitationRequests
 {
     public class CreateInvitationRequestHandler(IRepository<Invitation> invitationRepository, IMeetingRepository meetingRepository, ICurrentIdentity currentIdentity) : IRequestHandler<CreateInvitationRequest>
     {

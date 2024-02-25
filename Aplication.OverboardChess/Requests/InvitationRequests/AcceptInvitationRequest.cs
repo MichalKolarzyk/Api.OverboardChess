@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Aplication.OverboardChess.Requests.UpdateInvitationRequests
+namespace Aplication.OverboardChess.Requests.InvitationRequests
 {
     public class AcceptInvitationRequest : IRequest
     {

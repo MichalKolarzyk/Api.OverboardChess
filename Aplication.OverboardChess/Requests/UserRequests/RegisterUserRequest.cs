@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.OverboardChess.Requests.CreateUserRequests
+namespace Aplication.OverboardChess.Requests.UserRequests
 {
     public class RegisterUserRequest(string username, string password) : IRequest
     {

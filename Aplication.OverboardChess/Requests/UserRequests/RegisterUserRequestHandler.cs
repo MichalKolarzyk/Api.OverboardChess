@@ -3,7 +3,7 @@ using Domain.OverboardChess.Users;
 using MediatR;
 using Utilities.OverboardChess.Cryptography;
 
-namespace Aplication.OverboardChess.Requests.CreateUserRequests
+namespace Aplication.OverboardChess.Requests.UserRequests
 {
     public class RegisterUserRequestHandler(IRepository<User> userRepository) : IRequestHandler<RegisterUserRequest>
     {

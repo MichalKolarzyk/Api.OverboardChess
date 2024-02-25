@@ -1,5 +1,4 @@
-﻿using Aplication.OverboardChess.Requests.CreateUserRequests;
-using Aplication.OverboardChess.Requests.GetUserRequests;
+﻿using Aplication.OverboardChess.Requests.UserRequests;
 using Http.OverboardChess.Controllers.UserControllers.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

@@ -1,9 +1,8 @@
 ﻿using Aplication.OverboardChess.Abstractions;
-using Aplication.OverboardChess.Abstractions.Repositories;
 using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
 using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories.ViewModels;
-using Aplication.OverboardChess.Requests.UpdateMeetingRequests;
-using Application.OverboardChess.Requests.CreateMeetingRequests;
+using Aplication.OverboardChess.Requests.MeetingRequests;
+using Application.OverboardChess.Requests.MeetingRequests;
 using Http.OverboardChess.Controllers.MeetingControllers.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -43,10 +42,24 @@ namespace Http.OverboardChess.Controllers.MeetingControllers
             return await meetingRepository.FindMeetings(currentIdentity.GetUserId(), skip, take);
         }
 
+        [HttpGet("{meetingId}")]
+        public async Task<GetMeetingResponse> GetMeeting([FromRoute] Guid meetingId)
+        {
+            return await mediator.Send(new GetMeetingRequest(meetingId));
+        }
+
+
         [HttpPost("{meetingId}/join")]
         public async Task<ActionResult> Join([FromRoute] Guid meetingId)
         {
             await mediator.Send(new JoinMeetingRequest(meetingId));
+            return Ok();
+        }
+
+        [HttpDelete("{meetingId}/delete")]
+        public async Task<ActionResult> Delete([FromRoute] Guid meetingId)
+        {
+            await mediator.Send(new DeleteMeetingRequest(meetingId));
             return Ok();
         }
     }

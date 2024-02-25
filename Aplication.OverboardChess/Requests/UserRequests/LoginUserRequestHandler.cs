@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Utilities.OverboardChess.Cryptography;
 using Utilities.OverboardChess.TokenProviders;
 
-namespace Aplication.OverboardChess.Requests.GetUserRequests
+namespace Aplication.OverboardChess.Requests.UserRequests
 {
     public class LoginUserRequestHandler : IRequestHandler<LoginUserRequest, string>
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.OverboardChess.Requests.UpdateInvitationRequests
+namespace Aplication.OverboardChess.Requests.InvitationRequests
 {
     public class RejectInvitationRequest : IRequest
     {

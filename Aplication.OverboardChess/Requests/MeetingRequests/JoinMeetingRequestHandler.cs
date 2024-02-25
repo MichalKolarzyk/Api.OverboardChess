@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.OverboardChess.Requests.UpdateMeetingRequests
+namespace Aplication.OverboardChess.Requests.MeetingRequests
 {
     public class JoinMeetingRequestHandler(
-        IMeetingRepository meetingRepository, 
+        IMeetingRepository meetingRepository,
         IInvitationRepository invitationRepository,
         ICurrentIdentity currentIdentity) : IRequestHandler<JoinMeetingRequest>
     {
@@ -22,7 +22,7 @@ namespace Aplication.OverboardChess.Requests.UpdateMeetingRequests
             meeting.Join(currentUserId);
             await meetingRepository.UpdateAsync(meeting);
 
-            var invitation = await invitationRepository.GetAsync(i => i.MeetingId == request.MeetingId 
+            var invitation = await invitationRepository.GetAsync(i => i.MeetingId == request.MeetingId
                 && i.InvitedUserId == currentUserId
                 && i.State == Domain.OverboardChess.Invitations.InvitationState.Created);
 
