@@ -38,9 +38,9 @@ namespace Http.OverboardChess.Controllers.MeetingControllers
         }
 
         [HttpGet("FindMeetings")]
-        public async Task<List<MeetingWithUserViewModel>> FindMeetings()
+        public async Task<List<MeetingWithUserViewModel>> FindMeetings([FromQuery] int skip, [FromQuery] int take)
         {
-            return await meetingRepository.FindMeetings(currentIdentity.GetUserId());
+            return await meetingRepository.FindMeetings(currentIdentity.GetUserId(), skip, take);
         }
 
         [HttpPost("{meetingId}/join")]
