@@ -6,8 +6,8 @@ namespace Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositorie
 {
     public interface IMeetingRepository : IRepository<Meeting>
     {
-        Task<List<MeetingWithUserViewModel>> GetMeetingsWhereUserParticipate(Guid userParticipate, long skip = 0, long take = 100);
-        Task<List<MeetingWithUserViewModel>> GetUserOwnerMeetings(Guid userOwnerId, long skip = 0, long take = 100);
-        Task<List<MeetingWithUserViewModel>> FindMeetings(Guid userOwnerId, long skip = 0, long take = 100);
+        Task<List<MeetingWithUserViewModel>> GetMeetingsWhereUserParticipate(Guid userParticipate, DateTime minDate, long skip = 0, long take = 100);
+        Task<List<MeetingWithUserViewModel>> GetUserOwnerMeetings(Guid userOwnerId, DateTime minDate, long skip = 0, long take = 100);
+        Task<List<MeetingWithUserViewModel>> FindMeetings(Guid userOwnerId, DateTime minDate, long skip = 0, long take = 100);
     }
 }

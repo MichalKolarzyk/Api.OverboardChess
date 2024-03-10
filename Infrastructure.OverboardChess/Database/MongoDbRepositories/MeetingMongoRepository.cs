@@ -1,5 +1,6 @@
 ﻿using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories;
 using Aplication.OverboardChess.Abstractions.Repositories.MeetingRepositories.ViewModels;
+using Aplication.OverboardChess.Providers;
 using Domain.OverboardChess.Meetings;
 using Domain.OverboardChess.Users;
 using MongoDB.Bson;
@@ -10,12 +11,13 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
 {
     public class MeetingMongoRepository(MongoDatabase database) : MongoRepository<Meeting>(database), IMeetingRepository
     {
-        public async Task<List<MeetingWithUserViewModel>> FindMeetings(Guid userOwnerId, long skip = 0, long take = 100)
+        public async Task<List<MeetingWithUserViewModel>> FindMeetings(Guid userOwnerId, DateTime minDate, long skip = 0, long take = 100)
         {
             return await _mongoCollection.Aggregate()
                 .Match(m => m.State != MeetingState.Done 
                     && m.IsPrivate != true
                     && m.OwnerId != userOwnerId 
+                    && m.End >= minDate
                     && !m.Participants.Contains(userOwnerId))
                 .Lookup<User, MeetingWithUser>(
                     nameof(User),
@@ -36,10 +38,10 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                 .ToListAsync();
         }
 
-        public async Task<List<MeetingWithUserViewModel>> GetMeetingsWhereUserParticipate(Guid userParticipate, long skip = 0, long take = 100)
+        public async Task<List<MeetingWithUserViewModel>> GetMeetingsWhereUserParticipate(Guid userParticipate, DateTime minDate, long skip = 0, long take = 100)
         {
             return await _mongoCollection.Aggregate()
-                .Match(m => m.Participants.Contains(userParticipate) || m.OwnerId == userParticipate)
+                .Match(m => m.End >= minDate && (m.Participants.Contains(userParticipate) || m.OwnerId == userParticipate))
                 .Lookup<User, MeetingWithUser>(
                     nameof(User),
                     nameof(Meeting.OwnerId),
@@ -59,10 +61,10 @@ namespace Infrastructure.OverboardChess.Database.MongoDbRepositories
                 .ToListAsync();
         }
 
-        public async Task<List<MeetingWithUserViewModel>> GetUserOwnerMeetings(Guid userOwnerId, long skip = 0, long take = 100)
+        public async Task<List<MeetingWithUserViewModel>> GetUserOwnerMeetings(Guid userOwnerId, DateTime minDate, long skip = 0, long take = 100)
         {
             return await _mongoCollection.Aggregate()
-                .Match(m => m.OwnerId == userOwnerId)
+                .Match(m => m.End >= minDate && m.OwnerId == userOwnerId)
                 .Lookup<User, MeetingWithUser>(
                     nameof(User),
                     nameof(Meeting.OwnerId),
