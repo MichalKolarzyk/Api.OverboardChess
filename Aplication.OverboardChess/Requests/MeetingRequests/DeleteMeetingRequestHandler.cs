@@ -21,7 +21,7 @@ namespace Aplication.OverboardChess.Requests.MeetingRequests
             if (meeting.OwnerId != user.Id)
                 throw new Exception("Only user owner can delete meeting.");
 
-            await meetingRepository.DeleteAsync(m => m.Id == currentIdentity.UserId);
+            await meetingRepository.DeleteAsync(m => m.Id == request.MeetingId);
         }
     }
 }
