@@ -50,7 +50,7 @@ namespace Domain.OverboardChess.Meetings
         public bool CanJoin(Guid userId)
         {
             return !IsParticipant(userId)
-                && Participants.Count < ParticipantsLimit
+                && (ParticipantsLimit == null || Participants.Count < ParticipantsLimit)
                 && !IsPrivate;
         }
 
