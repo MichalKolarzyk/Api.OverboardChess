@@ -9,7 +9,7 @@ namespace Aplication.OverboardChess.Requests.InvitationRequests
 {
     public class CreateInvitationRequest : IRequest
     {
-        public Guid UserId { get; set; }
+        public string Username { get; set; } = string.Empty;
         public Guid MeetingId { get; set; }
     }
 }

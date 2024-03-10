@@ -27,7 +27,7 @@ namespace Http.OverboardChess.Controllers.InvitationControllers
             var request = new CreateInvitationRequest()
             {
                 MeetingId = body.MeetingId,
-                UserId = body.UserId,
+                Username = body.Username,
             };
             await mediator.Send(request);
             return Ok();
