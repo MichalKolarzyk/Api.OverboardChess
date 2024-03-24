@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.OverboardChess.DomainExceptions
 {
-    public class DomainException
+    public class DomainException : Exception
     {
         public DomainExceptionType Type { get; }
-        public string Message { get; set; } =string.Empty;
-        public Dictionary<string, string> Errors { get; set; } = [];
+        public Dictionary<string, List<string>> Errors { get; set; } = [];
     }
 
     public enum DomainExceptionType

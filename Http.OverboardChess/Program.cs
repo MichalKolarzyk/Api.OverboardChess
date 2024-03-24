@@ -55,13 +55,24 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(MongoRepository<>));
 builder.Services.AddScoped<IMeetingRepository, MeetingMongoRepository>();
 builder.Services.AddScoped<IInvitationRepository, InvitationMongoRepository>();
 builder.Services.AddScoped<IDateTimeProvider, DateTimeProvider>();
+builder.Services.AddScoped<IEmailProvider, EmailProvider>();
+builder.Services.AddScoped<ISecurityTokenProvider, SecurityTokenProvider>();
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.Configure<MongoDbSettings>(config =>
 {
-    config.ConnectionString = Environment.GetEnvironmentVariable("MONGO_SETTINGS_CONNECTION_STRING") 
-        ?? builder.Configuration.GetSection("MongoDbSettings")["ConnectionString"] 
-        ?? "";
-    config.DatabaseName = builder.Configuration.GetSection("MongoDbSettings")["DatabaseName"] ?? "";
+    var appSettingsSection = builder.Configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>() ?? new MongoDbSettings();
+    config.ConnectionString = Environment.GetEnvironmentVariable("MONGO_SETTINGS_CONNECTION_STRING") ?? appSettingsSection.ConnectionString;
+    config.DatabaseName = appSettingsSection.DatabaseName;
+});
+
+builder.Services.Configure<EmailProviderSettings>(config =>
+{
+    config.Email = "overboardchess@gmail.com";
+    config.Password = Environment.GetEnvironmentVariable("EMAIL_PROVIDER_SETTINGS_PASSWORD") ?? "";
+    config.Username = "OverboardChess";
+    config.Server = "smtp.gmail.com";
+    config.Port = 587;
 });
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblies(ApplicationAssembly.Assembly));

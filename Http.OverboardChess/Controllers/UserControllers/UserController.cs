@@ -9,21 +9,30 @@ namespace Http.OverboardChess.Controllers.UserControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator)
+        [HttpPost("loginWithEmail")]
+        public async Task<IActionResult> LoginWithEmail([FromBody] LoginWithEmailBody body)
         {
-            _mediator = mediator;
+            var request = new LoginWithEmailRequest(body.Email);
+            await mediator.Send(request);
+            return Ok();
         }
 
-        // GET: api/<UserController>
+        [HttpPost("confirmEmail")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailBody body)
+        {
+            var request = new ConfirmEmailRequest(body.Email, body.Code);
+            var token = await mediator.Send(request);
+            return Ok(token);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserBody body)
         {
             var request = new RegisterUserRequest(body.Username, body.Password);
-            await _mediator.Send(request);
+            await mediator.Send(request);
             return Ok();
         }
 
@@ -31,7 +40,7 @@ namespace Http.OverboardChess.Controllers.UserControllers
         public async Task<IActionResult> Login([FromBody] LoginUserBody body)
         {
             var request = new LoginUserRequest(body.Username, body.Password);
-            var token = await _mediator.Send(request);
+            var token = await mediator.Send(request);
             return Ok(token);
         }
     }
