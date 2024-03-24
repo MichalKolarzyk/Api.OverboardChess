@@ -1,5 +1,7 @@
 ﻿using Domain.OverboardChess.Users;
 using Utilities.OverboardChess.DomainBase;
+using Utilities.OverboardChess.Exceptions;
+using Utilities.OverboardChess.Validation;
 
 namespace Domain.OverboardChess.Meetings
 {
@@ -18,8 +20,18 @@ namespace Domain.OverboardChess.Meetings
 
         public static Meeting Create(User owner, DateTime start, Duration duration, string title, int? participantsLimit = null, bool isPrivate = false)
         {
+            var result = new Result();
             if (duration.InMinutes() == 0)
-                throw new Exception("Meeting have to have duration greater then 0 minutes");
+                result.AddError("duration", "Meeting have to have duration greater then 0 minutes");
+
+            if (string.IsNullOrEmpty(title))
+                result.AddError("title", "Title cannot be empty");
+
+            if (start < DateTime.UtcNow)
+                result.AddError("start", "Meeting cannot start in the past.");
+
+            if (result.HasErrors())
+                throw result.ToDomainException(DomainExceptionType.BadRequest);
 
             return new Meeting
             {

@@ -1,9 +1,9 @@
-﻿using Domain.OverboardChess.DomainExceptions;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Text;
+using Utilities.OverboardChess.Exceptions;
 
 namespace Http.OverboardChess.Controllers.ExceptionControllers
 {
@@ -12,8 +12,6 @@ namespace Http.OverboardChess.Controllers.ExceptionControllers
     [ApiController]
     public class ExceptionController(ILogger<ExceptionController> logger) : ControllerBase
     {
-
-
         [Route("/exception")]
         public IActionResult HandleException()
         {
@@ -52,14 +50,12 @@ namespace Http.OverboardChess.Controllers.ExceptionControllers
 
         public int GetStatusCode(DomainExceptionType domainExceptionType)
         {
-            switch (domainExceptionType)
+            return domainExceptionType switch
             {
-                case DomainExceptionType.BadRequest:
-                    return 404;
-                case DomainExceptionType.Forbidden:
-                    return 403; 
-            }
-            return 500;
+                DomainExceptionType.BadRequest => 404,
+                DomainExceptionType.Forbidden => 403,
+                _ => 500,
+            };
         }
     }
 }
