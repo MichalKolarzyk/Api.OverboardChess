@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities.OverboardChess.Exceptions;
+using Utilities.OverboardChess.Validation;
 
 namespace Aplication.OverboardChess.Requests.UserRequests
 {
@@ -18,11 +20,14 @@ namespace Aplication.OverboardChess.Requests.UserRequests
         public async Task<string> Handle(ConfirmEmailRequest request, CancellationToken cancellationToken)
         {
             var loginWithEmail = await loginWithEmailRepository
-                .GetAsync(l => l.Email == request.Email && l.Code == request.Code && l.State == LoginWithEmailState.InProgress) 
-                ?? throw new Exception("Wrong email or code");
-
-            loginWithEmail.Complete();
+                .GetAsync(l => l.Email == request.Email && l.State == LoginWithEmailState.InProgress) 
+                ?? throw Result.FromError("email", "The email is not valid.").ToDomainException(DomainExceptionType.BadRequest);
+            
+            var result = loginWithEmail.TryComplete(request.Code);
             await loginWithEmailRepository.UpdateAsync(loginWithEmail);
+
+            if(result.HasErrors())
+                throw result.ToDomainException(DomainExceptionType.Forbidden);
 
             var user = await userRepository.GetAsync(u => u.Email == request.Email);
             if(user == null) {
